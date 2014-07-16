@@ -16,8 +16,7 @@ var relToAbsUrl = function(base, url){
 
 app.get('/', function(req, res){
     var url = req.query.url;
-    var target = decodeURIComponent(req.query.target);
-    console.log(target);
+    var target = req.query.target;
     var base = url;
     var visited = {};
     var queue = {};
@@ -38,10 +37,9 @@ app.get('/', function(req, res){
         request(newurl, function (error2, response2, html2) {
             visited[newurl] = true;
             queue[newurl] = false;
-            if (!error && response.statusCode == 200) {  
+            if (!error2 && response2.statusCode == 200) {  
                 var $$ = cheerio.load(html2);
-                console.log(target);
-                var byline = $$("cite").text();
+                var byline = $$(target).text();
                 if(byline) console.log(byline);
             }
         });
