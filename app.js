@@ -18,6 +18,7 @@ var relToAbsUrl = function(base, url){
 app.get('/', function(req, res){
     var url = req.query.url;
     var target = req.query.target;
+    if(!url || !target ) res.render('index.jade', { errors: 'URL and target fields must be present' });
     var baseurl = req.query.base || url;
     var rejecttarget = req.query.target;
     var base = url;
@@ -82,6 +83,10 @@ app.get('/', function(req, res){
         
     });
 
+});
+
+app.get('/view', function(req, res){
+    res.render('index.jade');
 });
 
 app.listen(3000);

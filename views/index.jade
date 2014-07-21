@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+    script(type='text/javascript')
+
+  body
+    span(style="color:red")= errors
+  
+    h1 Scraping details
+    
+    form(method="get", action="/")
+        div
+            label  URL to scrape
+                input(name="site", id="site")
+
+        div
+            label  Target element 
+                input(name="target", id="target")
+
+        div
+            label  Base URL 
+                input(name="base", id="base")
+                
+        div
+            input(type="submit", value="submit")
+
+    
